@@ -13,5 +13,7 @@ public class TpNoteErwanEugene {
 
     public static void main(String[] args) {
         System.out.println("Hello Worlddddd!");
+        Just2Test ok = new Just2Test();
+        ok.Test(8);
     }
 }
