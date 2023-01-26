@@ -15,5 +15,8 @@ public class TpNoteErwanEugene {
         System.out.println("Hello Worlddddd!");
         Just2Test ok = new Just2Test();
         ok.Test(8);
+        
+        Plateau jeu = new Plateau();
+//        System.out.println(jeu);
     }
 }
