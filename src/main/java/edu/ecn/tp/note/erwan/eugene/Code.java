@@ -23,10 +23,11 @@ public class Code {
     
     /** Constructeur par défaut de Code. */
     public Code() {
-        this.coul1 = "blanc";
-        this.coul2 = "blanc";
-        this.coul3 = "blanc";
-        this.coul4 = "blanc";
+        String coul = "blanc";
+        this.coul1 = coul;
+        this.coul2 = coul;
+        this.coul3 = coul;
+        this.coul4 = coul;
         
         nbBienPlace = 0;
         nbBonneCoul = 0;
@@ -69,16 +70,27 @@ public class Code {
     }
     
     /**
+     * Constructeur par clonage de Code.
+     * @param code Code a cloner
+     */
+    public Code(Code code) {
+        this.coul1 = code.coul1;
+        this.coul2 = code.coul2;
+        this.coul3 = code.coul3;
+        this.coul4 = code.coul4;
+        
+        this.nbBienPlace = code.nbBienPlace;
+        this.nbBonneCoul = code.nbBonneCoul;
+    }
+    
+    /**
      * Permet de comparer deux codes.
      * @param solution Le code auquel on compare ce code
      * @return True : les codes sont identiques,
      *         False : les codes sont différents
      */
     public boolean estEgal(Code solution) {
-        return this.coul1.equals(solution.coul1)
-            && this.coul2.equals(solution.coul2)
-            && this.coul3.equals(solution.coul3)
-            && this.coul4.equals(solution.coul4);
+        return this.nbBienPlace == 4;
     }
     
     /**
@@ -117,7 +129,7 @@ public class Code {
         }
         System.out.println(" pion :");
         Scanner scan = new Scanner(System.in);
-        String couleur = scan.next();
+        String couleur = scan.nextLine();
         if (!estValable(couleur)) {
             System.out.println("La couleur choisie n'est pas valide,");
             System.out.println("Choisissez parmi rouge, vert, bleu, jaune, noir et blanc.");
@@ -161,10 +173,11 @@ public class Code {
         }
         
         for (int i = 0; i < 4; i++) {
-            if (indices[i] == 0) {
+            if (indices[i] == 0 || indices[i] == 3) {
                 for (int j = i; j < 4; j++) {
                     if (indices[j] == 0 && couleurs[i].equals(solutions[j])) {
                         indices[i] = 2;
+                        indices[j] = 3;
                     }
                 }
             }
@@ -186,17 +199,18 @@ public class Code {
      */
     @Override
     public String toString() {
+        String[] couleurs = new String[4];
+        couleurs[0] = this.coul1;
+        couleurs[1] = this.coul2;
+        couleurs[2] = this.coul3;
+        couleurs[3] = this.coul4;
+        
         String ligne = "Indices blcs : " + this.nbBienPlace
                    + ", Indices rges : " + this.nbBonneCoul
-                                + " || " + this.coul1;
+                                + " || " + couleurs[0];
         
-        String[] couleurs = new String[3];
-        couleurs[0] = this.coul2;
-        couleurs[1] = this.coul3;
-        couleurs[2] = this.coul4;
-        
-        for (String coul : couleurs) {
-            switch (coul) {
+        for (int i = 0; i < 3; i++) {
+            switch (couleurs[i]) {
                 case "vert":
                 case "bleu":
                 case "noir":
@@ -208,9 +222,105 @@ public class Code {
                 default:
                     break;
             }
-            ligne += " | " + coul;
+            ligne += " | " + couleurs[i + 1];
         }
         
         return ligne;
+    }
+
+    /**
+     * Getter de coul1
+     * @return coul1
+     */
+    public String getCoul1() {
+        return coul1;
+    }
+
+    /**
+     * Getter de coul2
+     * @return coul2
+     */
+    public String getCoul2() {
+        return coul2;
+    }
+
+    /**
+     * Getter de coul3
+     * @return coul3
+     */
+    public String getCoul3() {
+        return coul3;
+    }
+
+    /**
+     * Getter de coul4
+     * @return coul4
+     */
+    public String getCoul4() {
+        return coul4;
+    }
+
+    /**
+     * Getter de nbBienPlace
+     * @return nbBienPlace
+     */
+    public int getNbBienPlace() {
+        return nbBienPlace;
+    }
+
+    /**
+     * Getter de nbBonneCoul
+     * @return nbBonneCoul
+     */
+    public int getNbBonneCoul() {
+        return nbBonneCoul;
+    }
+
+    /**
+     * Setter de coul1
+     * @param coul1 coul1
+     */
+    public void setCoul1(String coul1) {
+        this.coul1 = coul1;
+    }
+
+    /**
+     * Setter de coul2
+     * @param coul2 coul2
+     */
+    public void setCoul2(String coul2) {
+        this.coul2 = coul2;
+    }
+
+    /**
+     * Setter de coul3
+     * @param coul3 coul3
+     */
+    public void setCoul3(String coul3) {
+        this.coul3 = coul3;
+    }
+
+    /**
+     * Setter de coul4
+     * @param coul4 coul4
+     */
+    public void setCoul4(String coul4) {
+        this.coul4 = coul4;
+    }
+
+    /**
+     * Setter de nbBienPlace
+     * @param nbBienPlace nbBienPlace
+     */
+    public void setNbBienPlace(int nbBienPlace) {
+        this.nbBienPlace = nbBienPlace;
+    }
+
+    /**
+     * Setter de nbBonneCoul
+     * @param nbBonneCoul nbBonneCoul
+     */
+    public void setNbBonneCoul(int nbBonneCoul) {
+        this.nbBonneCoul = nbBonneCoul;
     }
 }

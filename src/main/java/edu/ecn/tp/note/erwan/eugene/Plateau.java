@@ -12,22 +12,26 @@ import java.util.LinkedList;
  */
 public class Plateau {
     
-    // Nombre de tours maximal d'une manche
+    /** Nombre de tours maximal d'une manche.*/
     public static final int NBTOURS = 12;
     
-    // Le code solution
-    private final Code solution;
+    /** Le code solution.*/
+    private Code solution;
     
-    // Booleen stockant si le résultat est bon ou non
+    /** Booleen stockant si le résultat est bon ou non.*/
     private boolean resultat;
     
-    // Plateau de jeu contenant les codes
+    /** Plateau de jeu contenant les codes.*/
     private LinkedList<Code> plateau;
     
-    // Les scores des joueurs
-    private final LinkedList<Integer> scores;
+    /** Les scores des joueurs.*/
+    private LinkedList<Integer> scores;
     
-    public Plateau() {
+    /**
+     * Constructeur de Plateau.
+     */
+    public Plateau() {        
+        plateau = new LinkedList<>();
         solution = new Code();
         resultat = false;
         scores = new LinkedList<>();
@@ -41,14 +45,11 @@ public class Plateau {
      */
     public void Tour2Jeu(int nbManche) {
         
-        plateau = new LinkedList<>();
-        
         for (int manche=0; manche < nbManche; manche++) {
             
             System.out.println("C'est au tour du joueur " + (manche%2 + 1) + " de creer un code.");
             int tour = 0;
             
-
             solution.choixCode();
 
             System.out.println("C'est au tour du joueur " + (2 - manche%2) + " de deviner.");
@@ -68,7 +69,6 @@ public class Plateau {
 
                 proposition.verifierCode(solution);
                 resultat =  proposition.estEgal(solution);
-    //            System.out.println
                 tour += 1;
             }
 
@@ -83,6 +83,54 @@ public class Plateau {
             resultat = false;
         }
         
+        System.out.println("Le joueur 1 a "  + scores.get(0) + " points.");
+        System.out.println("Le joueur 2 a "  + scores.get(1) + " points.");
+        
+        if (scores.get(0) > scores.get(1)) {
+            System.out.println("Felicitations au joueur 1, il a gagne !");
+        }
+        else if (scores.get(0) < scores.get(1)) {
+            System.out.println("Felicitations au joueur 2, il a gagne !");
+        }
+        else {
+            System.out.println("Felicitations aux deux joueurs, il y a egalite !");
+        }
+    }
+
+    public Code getSolution() {
+        return solution;
+    }
+
+    public void setSolution(Code solution) {
+        this.solution = solution;
+    }
+
+    public LinkedList<Integer> getScores() {
+        return scores;
+    }
+
+    public void setScores(LinkedList<Integer> scores) {
+        this.scores = scores;
+    }
+    
+    public boolean isResultat() {
+        return resultat;
+    }
+
+    public void setResultat(boolean resultat) {
+        this.resultat = resultat;
+    }
+
+    public LinkedList<Code> getPlateau() {
+        return plateau;
+    }
+
+    public void setPlateau(LinkedList<Code> plateau) {
+        this.plateau = plateau;
+    }
+    
+    public void addInPlateau(Code code) {
+        this.plateau.add(code);
     }
     
     /**
