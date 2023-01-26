@@ -4,8 +4,6 @@
  */
 package edu.ecn.tp.note.erwan.eugene;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.LinkedList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -174,21 +172,21 @@ public class PlateauTest {
     public void testGetScores() {
         System.out.println("getScores");
         Plateau instance = new Plateau();
-        LinkedList<Integer> expResult = new LinkedList<>();
-        expResult.add(0);
-        expResult.add(0);
-        LinkedList<Integer> result = instance.getScores();
-        assertEquals(expResult, result);
+        int[] expResult = new int[2];
+        int[] result = instance.getScores();
+        assertEquals(expResult[0], result[0]);
+        assertEquals(expResult[1], result[1]);
         
-        LinkedList<Integer> new_expResult = new LinkedList<>();
-        new_expResult.add(4);
-        new_expResult.add(8);
-        LinkedList<Integer> new_listTest = new LinkedList<>();
-        new_listTest.add(4);
-        new_listTest.add(8);
+        int[] new_expResult = new int[2];
+        new_expResult[0] = 4;
+        new_expResult[1] = 8;
+        int[] new_listTest = new int[2];
+        new_listTest[0] = 4;
+        new_listTest[1] = 8;
         instance.setScores(new_listTest);
-        LinkedList<Integer> new_result = instance.getScores();
-        assertEquals(new_expResult, new_result);
+        int[] new_result = instance.getScores();
+        assertEquals(expResult[0], result[0]);
+        assertEquals(expResult[1], result[1]);
     }
 
     /**
@@ -199,15 +197,16 @@ public class PlateauTest {
         System.out.println("setScores");
         Plateau instance = new Plateau();
         
-        LinkedList<Integer> expResult = new LinkedList<>();
-        expResult.add(5);
-        expResult.add(23);
-        LinkedList<Integer> listTest = new LinkedList<>();
-        listTest.add(5);
-        listTest.add(23);
+        int[] expResult = new int[2];
+        expResult[0] = 5;
+        expResult[1] = 23;
+        int[] listTest = new int[2];
+        listTest[0] = 5;
+        listTest[1] = 23;
         instance.setScores(listTest);
-        LinkedList<Integer> result = instance.getScores();
-        assertEquals(expResult, result);
+        int[] result = instance.getScores();
+        assertEquals(expResult[0], result[0]);
+        assertEquals(expResult[1], result[1]);
     }
 
  

@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class Plateau {
     
     /** Nombre de tours maximal d'une manche.*/
-    public static final int NBTOURS = 12;
+    private final int NBTOURS = 12;
     
     /** Le code solution.*/
     private Code solution;
@@ -25,7 +25,7 @@ public class Plateau {
     private LinkedList<Code> plateau;
     
     /** Les scores des joueurs.*/
-    private LinkedList<Integer> scores;
+    private int[] scores = new int[2];
     
     /**
      * Constructeur de Plateau.
@@ -34,9 +34,7 @@ public class Plateau {
         plateau = new LinkedList<>();
         solution = new Code();
         resultat = false;
-        scores = new LinkedList<>();
-        scores.add(0);
-        scores.add(0);
+        scores = new int[2];
     }
     
     /**
@@ -79,17 +77,17 @@ public class Plateau {
                 System.out.println("Dommage, vous n'avez pas trouvé le code...");
             }
             
-            scores.set((manche%2), scores.get(manche%2) + tour);
+            scores[manche%2] = scores[manche%2] + tour;
             resultat = false;
         }
         
-        System.out.println("Le joueur 1 a "  + scores.get(0) + " points.");
-        System.out.println("Le joueur 2 a "  + scores.get(1) + " points.");
+        System.out.println("Le joueur 1 a "  + scores[0] + " points.");
+        System.out.println("Le joueur 2 a "  + scores[1] + " points.");
         
-        if (scores.get(0) > scores.get(1)) {
+        if (scores[0] > scores[1]) {
             System.out.println("Felicitations au joueur 1, il a gagne !");
         }
-        else if (scores.get(0) < scores.get(1)) {
+        else if (scores[0] < scores[1]) {
             System.out.println("Felicitations au joueur 2, il a gagne !");
         }
         else {
@@ -105,11 +103,11 @@ public class Plateau {
         this.solution = solution;
     }
 
-    public LinkedList<Integer> getScores() {
+    public int[] getScores() {
         return scores;
     }
 
-    public void setScores(LinkedList<Integer> scores) {
+    public void setScores(int[] scores) {
         this.scores = scores;
     }
     
