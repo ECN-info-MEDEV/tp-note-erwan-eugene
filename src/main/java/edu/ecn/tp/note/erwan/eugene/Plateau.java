@@ -66,7 +66,7 @@ public class Plateau {
                 plateau.add(proposition);
                 proposition.choixCode();
 
-//                proposition.verifierCode(solution);
+                proposition.verifierCode(solution);
                 resultat =  proposition.estEgal(solution);
     //            System.out.println
                 tour += 1;
