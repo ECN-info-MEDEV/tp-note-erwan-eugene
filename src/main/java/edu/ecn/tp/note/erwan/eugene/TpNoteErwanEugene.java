@@ -12,12 +12,8 @@ package edu.ecn.tp.note.erwan.eugene;
 public class TpNoteErwanEugene {
 
     public static void main(String[] args) {
-        System.out.println("Hello Worlddddd!");
-//        Just2Test ok = new Just2Test();
-//        ok.Test(8);
         
         Plateau jeu = new Plateau();
         jeu.Tour2Jeu(2);
-//        System.out.println(jeu);
     }
 }
