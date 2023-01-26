@@ -23,10 +23,11 @@ public class Code {
     
     /** Constructeur par défaut de Code. */
     public Code() {
-        this.coul1 = "blanc";
-        this.coul2 = "blanc";
-        this.coul3 = "blanc";
-        this.coul4 = "blanc";
+        String coul = "blanc";
+        this.coul1 = coul;
+        this.coul2 = coul;
+        this.coul3 = coul;
+        this.coul4 = coul;
         
         nbBienPlace = 0;
         nbBonneCoul = 0;
@@ -66,6 +67,20 @@ public class Code {
         
         this.nbBienPlace = nbBienPlace;
         this.nbBonneCoul = nbBonneCoul;
+    }
+    
+    /**
+     * Constructeur par clonage de Code.
+     * @param code Code a cloner
+     */
+    public Code(Code code) {
+        this.coul1 = code.coul1;
+        this.coul2 = code.coul2;
+        this.coul3 = code.coul3;
+        this.coul4 = code.coul4;
+        
+        this.nbBienPlace = code.nbBienPlace;
+        this.nbBonneCoul = code.nbBonneCoul;
     }
     
     /**
