@@ -129,10 +129,7 @@ public class Code {
         }
         System.out.println(" pion :");
         Scanner scan = new Scanner(System.in);
-
-        System.out.println(System.in);
         String couleur = scan.nextLine();
-        System.out.println(couleur);
         if (!estValable(couleur)) {
             System.out.println("La couleur choisie n'est pas valide,");
             System.out.println("Choisissez parmi rouge, vert, bleu, jaune, noir et blanc.");

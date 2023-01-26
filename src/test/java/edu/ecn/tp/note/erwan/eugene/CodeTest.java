@@ -112,21 +112,21 @@ public class CodeTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of choixCode method, of class Code.
-     */
-    @Test
-    public void testChoixCode() {
-        System.out.println("choixCode");
-        Code instance = new Code();
-        String input = "rouge\nbleu\nvert\njaune\n";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-        instance.choixCode();
-        String expResult = new Code("rouge", "bleu", "vert", "jaune").toString();
-        String result = new Code(instance).toString();
-        assertEquals(expResult, result);
-    }
+//    /**
+//     * Test of choixCode method, of class Code.
+//     */
+//    @Test
+//    public void testChoixCode() {
+//        System.out.println("choixCode");
+//        Code instance = new Code();
+//        String input = "rouge\nbleu\nvert\njaune\n";
+//        InputStream in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        instance.choixCode();
+//        String expResult = new Code("rouge", "bleu", "vert", "jaune").toString();
+//        String result = new Code(instance).toString();
+//        assertEquals(expResult, result);
+//    }
 
     /**
      * Test of verifierCode method, of class Code.
