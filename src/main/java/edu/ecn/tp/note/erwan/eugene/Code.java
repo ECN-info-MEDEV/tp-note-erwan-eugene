@@ -173,10 +173,11 @@ public class Code {
         }
         
         for (int i = 0; i < 4; i++) {
-            if (indices[i] == 0) {
+            if (indices[i] == 0 || indices[i] == 3) {
                 for (int j = i; j < 4; j++) {
                     if (indices[j] == 0 && couleurs[i].equals(solutions[j])) {
                         indices[i] = 2;
+                        indices[j] = 3;
                     }
                 }
             }
