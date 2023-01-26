@@ -183,17 +183,18 @@ public class Code {
      */
     @Override
     public String toString() {
+        String[] couleurs = new String[4];
+        couleurs[0] = this.coul1;
+        couleurs[1] = this.coul2;
+        couleurs[2] = this.coul3;
+        couleurs[3] = this.coul4;
+        
         String ligne = "Indices blcs : " + this.nbBienPlace
                    + ", Indices rges : " + this.nbBonneCoul
-                                + " || " + this.coul1;
+                                + " || " + couleurs[0];
         
-        String[] couleurs = new String[3];
-        couleurs[0] = this.coul2;
-        couleurs[1] = this.coul3;
-        couleurs[2] = this.coul4;
-        
-        for (String coul : couleurs) {
-            switch (coul) {
+        for (int i = 0; i < 3; i++) {
+            switch (couleurs[i]) {
                 case "vert":
                 case "bleu":
                 case "noir":
@@ -205,7 +206,7 @@ public class Code {
                 default:
                     break;
             }
-            ligne += " | " + coul;
+            ligne += " | " + couleurs[i + 1];
         }
         
         return ligne;
