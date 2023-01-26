@@ -7,8 +7,8 @@ package edu.ecn.tp.note.erwan.eugene;
 import java.util.LinkedList;
 
 /**
- *
- * @author eugen
+ * Le plateau pour jouer au jeu.
+ * @author Erwan
  */
 public class Plateau {
     

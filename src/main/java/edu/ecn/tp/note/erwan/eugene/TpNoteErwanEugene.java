@@ -6,8 +6,8 @@
 package edu.ecn.tp.note.erwan.eugene;
 
 /**
- *
- * @author erwan
+ * Main
+ * @author Erwan
  */
 public class TpNoteErwanEugene {
 
