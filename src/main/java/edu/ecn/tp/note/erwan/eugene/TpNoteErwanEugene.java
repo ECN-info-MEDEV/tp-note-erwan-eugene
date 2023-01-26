@@ -18,7 +18,6 @@ public class TpNoteErwanEugene {
         
         Plateau jeu = new Plateau();
         jeu.Tour2Jeu(4);
-
 //        System.out.println(jeu);
     }
 }

@@ -10,11 +10,16 @@ import java.util.Scanner;
  * @author Eugene
  */
 public class Code {
-    /** Les couleurs ordonnées du code */
+    /** Les couleurs ordonnées du code. */
     private String coul1;
     private String coul2;
     private String coul3;
     private String coul4;
+    
+    /** Nombre de pions de la bonne couleur bien places. */
+    private int nbBienPlace;
+    /** Nombre de pions de la bonne couleur mal places. */
+    private int nbBonneCoul;
     
     /** Constructeur par défaut de Code. */
     public Code() {
@@ -22,6 +27,9 @@ public class Code {
         this.coul2 = "blanc";
         this.coul3 = "blanc";
         this.coul4 = "blanc";
+        
+        nbBienPlace = 0;
+        nbBonneCoul = 0;
     }
     
     /**
@@ -36,6 +44,28 @@ public class Code {
         this.coul2 = coul2;
         this.coul3 = coul3;
         this.coul4 = coul4;
+        
+        this.nbBienPlace = 0;
+        this.nbBonneCoul = 0;
+    }
+    
+    /**
+     * Constructeur de Code.
+     * @param coul1 Couleur du 1er pion
+     * @param coul2 Couleur du 2eme pion
+     * @param coul3 Couleur du 3eme pion
+     * @param coul4 Couleur du 4eme pion
+     * @param nbBienPlace Nombre de pions de la bonne couleur bien places
+     * @param nbBonneCoul Nombre de pions de la bonne couleur mal places
+     */
+    public Code(String coul1, String coul2, String coul3, String coul4, int nbBienPlace, int nbBonneCoul) {
+        this.coul1 = coul1;
+        this.coul2 = coul2;
+        this.coul3 = coul3;
+        this.coul4 = coul4;
+        
+        this.nbBienPlace = nbBienPlace;
+        this.nbBonneCoul = nbBonneCoul;
     }
     
     /**
@@ -45,10 +75,10 @@ public class Code {
      *         False : les codes sont différents
      */
     public boolean estEgal(Code solution) {
-        return this.coul1.equals(solution.coul1) &&
-               this.coul2.equals(solution.coul2) &&
-               this.coul3.equals(solution.coul3) &&
-               this.coul4.equals(solution.coul4);
+        return this.coul1.equals(solution.coul1)
+            && this.coul2.equals(solution.coul2)
+            && this.coul3.equals(solution.coul3)
+            && this.coul4.equals(solution.coul4);
     }
     
     /**
@@ -59,12 +89,12 @@ public class Code {
      *         False : ce n'est pas le cas
      */
     public boolean estValable(String couleur) {
-        return couleur.equals("blanc") ||
-               couleur.equals("noir") ||
-               couleur.equals("rouge") ||
-               couleur.equals("vert") ||
-               couleur.equals("jaune") ||
-               couleur.equals("bleu");
+        return couleur.equals("blanc")
+            || couleur.equals("noir")
+            || couleur.equals("rouge")
+            || couleur.equals("vert")
+            || couleur.equals("jaune")
+            || couleur.equals("bleu");
     }
     
     /**
@@ -73,7 +103,7 @@ public class Code {
      * @return La couleur du pion choisie
      */
     public String choixCouleur(int numCouleur) {
-        System.out.println("Couleur du " + numCouleur);
+        System.out.print("Couleur du " + numCouleur);
         switch (numCouleur) {
             case 1:
                 System.out.print("er");
@@ -85,7 +115,7 @@ public class Code {
                 System.out.print("eme");
                 break;
         }
-        System.out.print(" pion :");
+        System.out.println(" pion :");
         Scanner scan = new Scanner(System.in);
         String couleur = scan.next();
         if (!estValable(couleur)) {
@@ -102,5 +132,85 @@ public class Code {
         this.coul2 = choixCouleur(2);
         this.coul3 = choixCouleur(3);
         this.coul4 = choixCouleur(4);
+    }
+    
+    /**
+     * Verifie si des elements du code sont bons,
+     * et met a jour le nombre de pion bien places et de la bonne couleur.
+     * @param solution La solution a laquelle on compare le code
+     */
+    public void verifierCode(Code solution) {
+        int[] indices = new int[4];
+        
+        String[] couleurs = new String[4];
+        couleurs[0] = this.coul1;
+        couleurs[1] = this.coul2;
+        couleurs[2] = this.coul3;
+        couleurs[3] = this.coul4;
+        
+        String[] solutions = new String[4];
+        solutions[0] = solution.coul1;
+        solutions[1] = solution.coul2;
+        solutions[2] = solution.coul3;
+        solutions[3] = solution.coul4;
+        
+        for (int k = 0; k < 4; k++) {
+            if (couleurs[k].equals(solutions[k])) {
+                indices[k] = 1;
+            }
+        }
+        
+        for (int i = 0; i < 4; i++) {
+            if (indices[i] == 0) {
+                for (int j = i; j < 4; j++) {
+                    if (indices[j] == 0 && couleurs[i].equals(solutions[j])) {
+                        indices[i] = 2;
+                    }
+                }
+            }
+        }
+        
+        for (int k = 0; k < 4; k++) {
+            if (indices[k] == 1) {
+                this.nbBienPlace += 1;
+            }
+            else if (indices[k] == 2) {
+                this.nbBonneCoul += 1;
+            }
+        }
+    }
+    
+    /**
+     * Permet d'afficher une ligne du plateau correspondant au code.
+     * @return La ligne textuelle du plateau correspondant au code
+     */
+    @Override
+    public String toString() {
+        String ligne = "Indices blcs : " + this.nbBienPlace
+                   + ", Indices rges : " + this.nbBonneCoul
+                                + " || " + this.coul1;
+        
+        String[] couleurs = new String[3];
+        couleurs[0] = this.coul2;
+        couleurs[1] = this.coul3;
+        couleurs[2] = this.coul4;
+        
+        for (String coul : couleurs) {
+            switch (coul) {
+                case "vert":
+                case "bleu":
+                case "noir":
+                    ligne += " ";
+                    break;
+                case "rouge":
+                case "jaune":
+                case "blanc":
+                default:
+                    break;
+            }
+            ligne += " | " + coul;
+        }
+        
+        return ligne;
     }
 }

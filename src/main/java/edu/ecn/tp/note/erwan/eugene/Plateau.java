@@ -16,19 +16,24 @@ public class Plateau {
     public static final int NBTOURS = 12;
     
     // Le code solution
-    private final Code solution = new Code();
+    private final Code solution;
     
     // Booleen stockant si le résultat est bon ou non
-    private boolean resultat = false;
+    private boolean resultat;
     
     // Plateau de jeu contenant les codes
     private LinkedList<Code> plateau;
     
-    // Le score du joueur 1
-    private int joueur1 = 0;
+    // Les scores des joueurs
+    private final LinkedList<Integer> scores;
     
-    // Le score du joueur 2
-    private int joueur2 = 0;
+    public Plateau() {
+        solution = new Code();
+        resultat = false;
+        scores = new LinkedList<>();
+        scores.add(0);
+        scores.add(0);
+    }
     
     /**
      * Fonction gérant le jeu entre les deux joueurs.
@@ -36,11 +41,18 @@ public class Plateau {
      */
     public void Tour2Jeu(int nbManche) {
         
-        for (int i=0; i < nbManche; i++) {
+        plateau = new LinkedList<>();
+        
+        for (int manche=0; manche < nbManche; manche++) {
+            
+            System.out.println("C'est au tour du joueur " + (manche%2 + 1) + " de creer un code.");
             int tour = 0;
+            
 
             solution.choixCode();
 
+            System.out.println("C'est au tour du joueur " + (2 - manche%2) + " de deviner.");
+            
             while ((!resultat) && (tour < NBTOURS)) {
 
                 if(tour != 0) {
@@ -54,14 +66,21 @@ public class Plateau {
                 plateau.add(proposition);
                 proposition.choixCode();
 
-//                proposition.verifierCode(solution);
+                proposition.verifierCode(solution);
                 resultat =  proposition.estEgal(solution);
     //            System.out.println
+                tour += 1;
             }
 
             if (resultat) {
                 System.out.println("Vous avez le bon code !");
             }
+            else {
+                System.out.println("Dommage, vous n'avez pas trouvé le code...");
+            }
+            
+            scores.set((manche%2), scores.get(manche%2) + tour);
+            resultat = false;
         }
         
     }
