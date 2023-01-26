@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class Plateau {
     
     // Nombre de tours maximal d'une manche
-    public static final int NBTOURS = 12;
+    private final int NBTOURS = 12;
     
     // Le code solution
     private final Code solution;

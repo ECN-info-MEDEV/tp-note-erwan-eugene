@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 /**
  *
@@ -102,7 +104,10 @@ public class CodeTest {
         System.out.println("choixCouleur");
         int numCouleur = 1;
         Code instance = new Code();
-        String expResult = "rouge";
+        String input = "rouge";
+        String expResult = input;
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
         String result = instance.choixCouleur(numCouleur);
         assertEquals(expResult, result);
     }
@@ -114,9 +119,12 @@ public class CodeTest {
     public void testChoixCode() {
         System.out.println("choixCode");
         Code instance = new Code();
+        String input = "rouge\nbleu\nvert\njaune\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
         instance.choixCode();
-        Code expResult = new Code("rouge", "bleu", "vert", "jaune");
-        Code result = new Code(instance);
+        String expResult = new Code("rouge", "bleu", "vert", "jaune").toString();
+        String result = new Code(instance).toString();
         assertEquals(expResult, result);
     }
 
@@ -129,26 +137,26 @@ public class CodeTest {
         Code solution = new Code("rouge", "rouge", "bleu", "vert");
         Code instance = new Code("rouge", "rouge", "bleu", "vert");
         instance.verifierCode(solution);
-        Code expResult = new Code("rouge", "rouge", "bleu", "vert", 4, 0);
-        Code result = new Code(instance);
+        String expResult = new Code("rouge", "rouge", "bleu", "vert", 4, 0).toString();
+        String result = new Code(instance).toString();
         assertEquals(expResult, result);
         
         instance = new Code("rouge", "vert", "bleu", "noir");
         instance.verifierCode(solution);
-        expResult = new Code("rouge", "vert", "bleu", "noir", 2, 1);
-        result = new Code(instance);
+        expResult = new Code("rouge", "vert", "bleu", "noir", 2, 1).toString();
+        result = new Code(instance).toString();
         assertEquals(expResult, result);
         
         instance = new Code("rouge", "vert", "vert", "noir");
         instance.verifierCode(solution);
-        expResult = new Code("rouge", "vert", "vert", "noir", 1, 1);
-        result = new Code(instance);
+        expResult = new Code("rouge", "vert", "vert", "noir", 1, 1).toString();
+        result = new Code(instance).toString();
         assertEquals(expResult, result);
         
         instance = new Code("rouge", "vert", "noir", "vert");
         instance.verifierCode(solution);
-        expResult = new Code("rouge", "vert", "noir", "vert", 2, 0);
-        result = new Code(instance);
+        expResult = new Code("rouge", "vert", "noir", "vert", 2, 0).toString();
+        result = new Code(instance).toString();
         assertEquals(expResult, result);
     }
 
@@ -198,8 +206,6 @@ public class CodeTest {
         String expResult = "vert";
         String result = instance.getCoul3();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -257,8 +263,8 @@ public class CodeTest {
         String coul1 = "bleu";
         Code instance = new Code("rouge", "bleu", "vert", "jaune");
         instance.setCoul1(coul1);
-        Code expResult = new Code("bleu", "bleu", "vert", "jaune");
-        Code result = new Code(instance);
+        String expResult = new Code("bleu", "bleu", "vert", "jaune").toString();
+        String result = new Code(instance).toString();
         assertEquals(expResult, result);
     }
 
@@ -271,8 +277,8 @@ public class CodeTest {
         String coul2 = "rouge";
         Code instance = new Code("rouge", "bleu", "vert", "jaune");
         instance.setCoul2(coul2);
-        Code expResult = new Code("rouge", "rouge", "vert", "jaune");
-        Code result = new Code(instance);
+        String expResult = new Code("rouge", "rouge", "vert", "jaune").toString();
+        String result = new Code(instance).toString();
         assertEquals(expResult, result);
     }
 
@@ -285,8 +291,8 @@ public class CodeTest {
         String coul3 = "bleu";
         Code instance = new Code("rouge", "bleu", "vert", "jaune");
         instance.setCoul3(coul3);
-        Code expResult = new Code("rouge", "bleu", "bleu", "jaune");
-        Code result = new Code(instance);
+        String expResult = new Code("rouge", "bleu", "bleu", "jaune").toString();
+        String result = new Code(instance).toString();
         assertEquals(expResult, result);
     }
 
@@ -299,8 +305,8 @@ public class CodeTest {
         String coul4 = "bleu";
         Code instance = new Code("rouge", "bleu", "vert", "jaune", 2, 0);
         instance.setCoul4(coul4);
-        Code expResult = new Code("rouge", "bleu", "vert", "bleu", 2, 0);
-        Code result = new Code(instance);
+        String expResult = new Code("rouge", "bleu", "vert", "bleu", 2, 0).toString();
+        String result = new Code(instance).toString();
         assertEquals(expResult, result);
     }
 
@@ -313,8 +319,8 @@ public class CodeTest {
         int nbBienPlace = 2;
         Code instance = new Code();
         instance.setNbBienPlace(nbBienPlace);
-        Code expResult = new Code("blanc", "blanc", "blanc", "blanc", 2, 0);
-        Code result = new Code(instance);
+        String expResult = new Code("blanc", "blanc", "blanc", "blanc", 2, 0).toString();
+        String result = new Code(instance).toString();
         assertEquals(expResult, result);
     }
 
@@ -326,9 +332,9 @@ public class CodeTest {
         System.out.println("setNbBonneCoul");
         int nbBonneCoul = 2;
         Code instance = new Code();
-        instance.setNbBienPlace(nbBonneCoul);
-        Code expResult = new Code("blanc", "blanc", "blanc", "blanc", 0, 2);
-        Code result = new Code(instance);
+        instance.setNbBonneCoul(nbBonneCoul);
+        String expResult = new Code("blanc", "blanc", "blanc", "blanc", 0, 2).toString();
+        String result = new Code(instance).toString();
         assertEquals(expResult, result);
     }
     
