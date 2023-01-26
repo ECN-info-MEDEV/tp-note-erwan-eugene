@@ -12,19 +12,19 @@ import java.util.LinkedList;
  */
 public class Plateau {
     
-    // Nombre de tours maximal d'une manche
+    /** Nombre de tours maximal d'une manche.*/
     public static final int NBTOURS = 12;
     
-    // Le code solution
+    /** Le code solution.*/
     private Code solution;
     
-    // Booleen stockant si le résultat est bon ou non
+    /** Booleen stockant si le résultat est bon ou non.*/
     private boolean resultat;
     
-    // Plateau de jeu contenant les codes
+    /** Plateau de jeu contenant les codes.*/
     private LinkedList<Code> plateau;
     
-    // Les scores des joueurs
+    /** Les scores des joueurs.*/
     private LinkedList<Integer> scores;
     
     /**

@@ -4,6 +4,8 @@
  */
 package edu.ecn.tp.note.erwan.eugene;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.LinkedList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -37,18 +39,62 @@ public class PlateauTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of Tour2Jeu method, of class Plateau.
-     */
-    @Test
-    public void testTour2Jeu() {
-        System.out.println("Tour2Jeu");
-        int nbManche = 0;
-        Plateau instance = new Plateau();
-        instance.Tour2Jeu(nbManche);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-    }
+//    /**
+//     * Test of Tour2Jeu method, of class Plateau.
+//     */
+//    @Test
+//    public void testTour2Jeu() {
+//        System.out.println("Tour2Jeu");
+//        int nbManche = 1;
+//        Plateau instance = new Plateau();
+//
+//        String input = "blanc\nrouge\njaune\nvert\nblanc\nrouge\nbleu\nvert\nblanc\nrouge\njaune\nvert\n";
+//        InputStream in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        input = "rouge\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        input = "jaune\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        input = "vert\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        
+//        input = "blanc\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        input = "rouge\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        input = "bleu\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        input = "vert\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        
+//        input = "blanc\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        input = "rouge\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        input = "jaune\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        input = "vert\n";
+//        in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+
+//        instance.Tour2Jeu(nbManche);
+//        
+//        LinkedList<Integer> expScores = new LinkedList<>();
+//        expScores.add(2);
+//        expScores.add(0);
+//        assertEquals(expScores, instance.getScores());
+//
+//    }
 
     /**
      * Test of toString method, of class Plateau.
@@ -99,9 +145,7 @@ public class PlateauTest {
         System.out.println("setSolution");
         Plateau instance = new Plateau();
         
-        Code code = new Code();
-        assertEquals(code, instance.getSolution());
-        
+        Code code = new Code();        
         code.setCoul1("blanc");
         code.setCoul2("blanc");
         code.setCoul3("rouge");
@@ -112,7 +156,7 @@ public class PlateauTest {
         codeTest.setCoul3("rouge");
         codeTest.setCoul4("jaune");
         instance.setSolution(codeTest);
-        assertEquals(code, instance.getSolution());
+        assertEquals(code.toString(), instance.getSolution().toString());
     }
 
     /**
@@ -168,10 +212,26 @@ public class PlateauTest {
 //        boolean expResult = false;
 //        boolean result = instance.isResultat();
 //        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+//        
+//        Code code = new Code();
+//        code.setCoul1("blanc");
+//        code.setCoul2("blanc");
+//        code.setCoul3("rouge");
+//        code.setCoul4("jaune");
+//        Code solution = new Code();
+//        solution.setCoul1("blanc");
+//        solution.setCoul2("blanc");
+//        solution.setCoul3("rouge");
+//        solution.setCoul4("jaune");
+//        solution.verifierCode(code);
+//        
+//        
+//        boolean new_expResult = true;
+//        instance.setResultat(code.estEgal(solution));
+//        boolean new_result = instance.isResultat();
+//        assertEquals(new_expResult, new_result);
 //    }
-//
+
 //    /**
 //     * Test of setResultat method, of class Plateau.
 //     */

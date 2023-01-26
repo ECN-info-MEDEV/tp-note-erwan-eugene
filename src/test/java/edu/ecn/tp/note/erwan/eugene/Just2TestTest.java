@@ -4,6 +4,8 @@
  */
 package edu.ecn.tp.note.erwan.eugene;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,5 +49,20 @@ public class Just2TestTest {
         instance.Test(a);
         System.out.println("C'est fini ici");
     }
-    
+
+//    /**
+//     * Test of getInput method, of class Just2Test.
+//     */
+//    @Test
+//    public void testGetInput() {
+//        Just2Test instance = new Just2Test();
+//        
+//        String input = "add 5"+"\n"+"4";
+//        InputStream in = new ByteArrayInputStream(input.getBytes());
+//        instance.t = in;
+//        System.setIn(in);
+//
+//        assertEquals("add 5", instance.getInput());
+//        assertEquals("add 5", instance.getInput());
+//    }
 }
